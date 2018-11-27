@@ -1,0 +1,15 @@
+.idea/
+
+docs/_build/*
+dist/*
+build/*
+zfim.egg-info/*
+dist/*
+scratch/*
+venv/
+*.egg*
+
+*.pyc
+*.exe
+*.dll
+*.noseids
