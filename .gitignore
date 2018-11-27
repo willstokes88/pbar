@@ -3,7 +3,7 @@
 docs/_build/*
 dist/*
 build/*
-zfim.egg-info/*
+*.egg-info/*
 dist/*
 scratch/*
 venv/
