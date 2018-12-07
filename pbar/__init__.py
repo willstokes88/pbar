@@ -16,9 +16,11 @@ Usage
 =============
 Basic
 --------------
-Initialise a ``Bar`` object with the total number of iterations required, and then call ``step()`` for each iteration::
+Importing the ``Bar`` class is the first step::
 
     from pbar import Bar
+
+Initialise a ``Bar`` object with the total number of iterations required, and then call ``step()`` for each iteration::
 
     bar = Bar(100)
     for x in range(100):
@@ -43,6 +45,30 @@ Logging
 When using the progress bar, all log messages are captured. Once the bar completes (or ``end()`` is called manually)
 the log messages are flushed and printed to the console.
 
+The following example illustrates this concept::
+
+    def work():
+        log.info("Do some work!")
+
+    bar = Bar(3)
+    for idx in range(3):
+        bar.step()
+        work()
+    log.info("Done!")
+
+The above fragment of code would capture the logging from ``work()`` and then display it once the bar had completed::
+
+    >>> [||||||||||||||||] 100%
+    >>>
+    >>> root:INFO: Do some work!
+    >>> root:INFO: Do some work!
+    >>> root:INFO: Do some work!
+    >>> root:INFO: Done!
+
+.. note::
+    Whatever log formatting has been specified should be preserved.
+
+
 Logging to file will continue as normal.
 
 Customisation
@@ -62,7 +88,7 @@ Use the following keyword arguments to customise the look of the bar::
     width           The width of the bar in characters (50)
 
 The information displayed in the suffix (to the right of the bar) can also be customised using the ``suffix`` keyword
-and a formatted string of the form '{o.variable}'. ``variable`` can be any of the following::
+and a formatted string of the form ``{o.variable}``. ``variable`` can be any of the following::
 
     idx             The current iteration
     tot             The total number of iterations
